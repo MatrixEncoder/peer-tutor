@@ -1,0 +1,110 @@
+// Peer Tutoring Platform - Database Schema
+// Using SQLite so no extra server setup is needed
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// ─── Enums ───────────────────────────────────────────────────────────────────
+
+enum UserRole {
+  STUDENT
+  TUTOR
+  BOTH
+}
+
+enum SessionStatus {
+  PENDING
+  CONFIRMED
+  COMPLETED
+  CANCELLED
+}
+
+// ─── Tables ──────────────────────────────────────────────────────────────────
+
+model User {
+  id         String   @id @default(cuid())
+  name       String
+  email      String   @unique
+  password   String   // hashed with bcrypt
+  university String
+  department String
+  yearOfStudy Int     @default(1)
+  bio        String?
+  role       UserRole @default(STUDENT)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  // Relations
+  tutorProfile    TutorProfile?
+  sessionsAsStudent Session[] @relation("StudentSessions")
+  sessionsAsTutor   Session[] @relation("TutorSessions")
+  reviewsGiven      Review[]  @relation("ReviewerRelation")
+}
+
+model TutorProfile {
+  id            String  @id @default(cuid())
+  userId        String  @unique
+  user          User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  hourlyRate    Float   @default(0)
+  avgRating     Float   @default(0)
+  totalReviews  Int     @default(0)
+  isVerified    Boolean @default(false)
+  subjects      String  // comma-separated list e.g. "CS301,MATH201,PHY101"
+  bio           String?
+
+  availability  Availability[]
+  sessions      Session[]
+  reviews       Review[]
+}
+
+model Availability {
+  id            String       @id @default(cuid())
+  tutorProfile  TutorProfile @relation(fields: [tutorProfileId], references: [id], onDelete: Cascade)
+  tutorProfileId String
+
+  dayOfWeek     Int     // 0 = Sunday, 6 = Saturday
+  startTime     String  // "09:00"
+  endTime       String  // "11:00"
+}
+
+model Session {
+  id              String        @id @default(cuid())
+  student         User          @relation("StudentSessions", fields: [studentId], references: [id])
+  studentId       String
+  tutorProfile    TutorProfile  @relation(fields: [tutorProfileId], references: [id])
+  tutorProfileId  String
+  tutor           User          @relation("TutorSessions", fields: [tutorId], references: [id])
+  tutorId         String
+  subject         String        // e.g. "CS301 - Algorithms"
+  scheduledDate   String        // "2025-09-01"
+  scheduledTime   String        // "10:00"
+  durationMinutes Int           @default(60)
+  status          SessionStatus @default(PENDING)
+  totalCost       Float         @default(0)
+  notes           String?
+  cancelReason    String?
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  review          Review?
+}
+
+model Review {
+  id             String       @id @default(cuid())
+  session        Session      @relation(fields: [sessionId], references: [id])
+  sessionId      String       @unique
+  reviewer       User         @relation("ReviewerRelation", fields: [reviewerId], references: [id])
+  reviewerId     String
+  tutorProfile   TutorProfile @relation(fields: [tutorProfileId], references: [id])
+  tutorProfileId String
+  rating         Int          // 1-5
+  comment        String?
+  createdAt      DateTime     @default(now())
+}
