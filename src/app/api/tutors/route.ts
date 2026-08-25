@@ -48,11 +48,11 @@ export async function GET(request: NextRequest) {
     // If a subject filter was given, filter in memory
     // (subjects are stored as a comma-separated string)
     const filtered = subject
-      ? tutors.filter((t) =>
+      ? tutors.filter((t: { subjects: string }) =>
           t.subjects
             .toLowerCase()
             .split(",")
-            .some((s) => s.trim().includes(subject.toLowerCase()))
+            .some((s: string) => s.trim().includes(subject.toLowerCase()))
         )
       : tutors;
 

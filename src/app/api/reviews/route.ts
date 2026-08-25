@@ -80,7 +80,7 @@ export async function POST(request: NextRequest) {
     });
 
     const newAvg =
-      allReviews.reduce((sum, r) => sum + r.rating, 0) / allReviews.length;
+      allReviews.reduce((sum: number, r: { rating: number }) => sum + r.rating, 0) / allReviews.length;
 
     await db.tutorProfile.update({
       where: { id: bookingSession.tutorProfileId },
