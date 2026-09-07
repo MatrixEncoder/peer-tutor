@@ -13,10 +13,20 @@ async function initDashboard() {
 
   document.getElementById("nav-username").textContent = currentUser.name;
 
-  // Show role toggle if user is BOTH
-  if (currentUser.role === "BOTH") {
+  // Show role toggle for TUTOR and BOTH users
+  const isTutor = currentUser.role === "TUTOR" || currentUser.role === "BOTH";
+  if (isTutor) {
     document.getElementById("role-toggle-row").style.display = "flex";
-    document.getElementById("role-toggle-row").removeAttribute("style");
+    // Default TUTOR-only users to tutor view
+    if (currentUser.role === "TUTOR") {
+      currentView = "tutor";
+      document.querySelectorAll("#role-toggle .btn").forEach((b) => {
+        b.classList.remove("active");
+        b.classList.replace("btn-primary", "btn-outline-primary");
+      });
+      document.querySelector('#role-toggle .btn[data-view="tutor"]').classList.add("active");
+      document.querySelector('#role-toggle .btn[data-view="tutor"]').classList.replace("btn-outline-primary", "btn-primary");
+    }
   }
 
   // Role toggle
