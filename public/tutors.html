@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Find Tutors - PeerTutor</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="bg-light">
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="/">
+        <div class="navbar-brand-icon">PT</div>
+        <span class="fw-bold">PeerTutor</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto align-items-center gap-2">
+          <li class="nav-item"><a class="nav-link active" href="/tutors">Find Tutors</a></li>
+          <li class="nav-item" id="nav-dashboard" style="display:none"><a class="nav-link" href="/dashboard">Dashboard</a></li>
+          <li class="nav-item" id="nav-auth-buttons">
+            <a href="/login" class="btn btn-outline-primary btn-sm me-1">Sign In</a>
+            <a href="/register" class="btn btn-primary btn-sm">Get Started</a>
+          </li>
+          <li class="nav-item" id="nav-user-info" style="display:none">
+            <span class="me-2 text-muted small" id="nav-username"></span>
+            <button class="btn btn-outline-secondary btn-sm" id="nav-signout">Sign Out</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container py-4">
+    <h3 class="fw-bold mb-1">Find a tutor</h3>
+    <p class="text-muted small mb-4" id="tutor-count">Loading tutors...</p>
+
+    <div class="row g-4">
+      <!-- Filters Sidebar -->
+      <div class="col-lg-3">
+        <div class="card border-0 shadow-sm p-3">
+          <h6 class="fw-bold mb-3">Filters</h6>
+
+          <div class="mb-3">
+            <label class="form-label fw-semibold small">Subject / course code</label>
+            <input type="text" id="filter-subject" class="form-control form-control-sm" placeholder="e.g. CS101, MATH201">
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label fw-semibold small">Department</label>
+            <div class="d-flex flex-column gap-1" id="dept-buttons">
+              <button class="btn btn-sm btn-primary dept-btn active" data-dept="All">All</button>
+              <button class="btn btn-sm btn-outline-secondary dept-btn" data-dept="Computer Science">Computer Science</button>
+              <button class="btn btn-sm btn-outline-secondary dept-btn" data-dept="Mathematics">Mathematics</button>
+              <button class="btn btn-sm btn-outline-secondary dept-btn" data-dept="Physics">Physics</button>
+              <button class="btn btn-sm btn-outline-secondary dept-btn" data-dept="Chemistry">Chemistry</button>
+              <button class="btn btn-sm btn-outline-secondary dept-btn" data-dept="Economics">Economics</button>
+              <button class="btn btn-sm btn-outline-secondary dept-btn" data-dept="Engineering">Engineering</button>
+            </div>
+          </div>
+
+          <div>
+            <label class="form-label fw-semibold small">Minimum rating</label>
+            <div class="d-flex flex-column gap-1" id="rating-buttons">
+              <button class="btn btn-sm btn-primary rating-btn active" data-rating="0">Any rating</button>
+              <button class="btn btn-sm btn-outline-secondary rating-btn" data-rating="3">3&#9733; and up</button>
+              <button class="btn btn-sm btn-outline-secondary rating-btn" data-rating="4">4&#9733; and up</button>
+              <button class="btn btn-sm btn-outline-secondary rating-btn" data-rating="4.5">4.5&#9733; and up</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tutor Grid -->
+      <div class="col-lg-9">
+        <div id="tutors-grid" class="row g-3">
+          <!-- Populated by JS -->
+        </div>
+        <div id="no-tutors" class="text-center py-5 d-none">
+          <p class="text-muted">No tutors match your filters.</p>
+          <button class="btn btn-outline-secondary btn-sm" onclick="clearFilters()">Clear filters</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/tutors.js"></script>
+</body>
+</html>

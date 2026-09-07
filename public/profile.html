@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Profile - PeerTutor</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="bg-light">
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="/">
+        <div class="navbar-brand-icon">PT</div>
+        <span class="fw-bold">PeerTutor</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto align-items-center gap-2">
+          <li class="nav-item"><a class="nav-link" href="/tutors">Find Tutors</a></li>
+          <li class="nav-item"><a class="nav-link" href="/dashboard">Dashboard</a></li>
+          <li class="nav-item"><a class="nav-link active" href="/profile">Profile</a></li>
+          <li class="nav-item">
+            <span class="me-2 text-muted small" id="nav-username"></span>
+            <button class="btn btn-outline-secondary btn-sm" id="nav-signout">Sign Out</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container py-4" style="max-width: 700px;">
+    <h4 class="fw-bold mb-4">Edit Profile</h4>
+
+    <!-- Basic Info -->
+    <div class="card border-0 shadow-sm mb-4">
+      <div class="card-body">
+        <h6 class="fw-bold mb-3">Basic Info</h6>
+        <form id="profile-form">
+          <div class="mb-3">
+            <label class="form-label fw-semibold small">Full name</label>
+            <input type="text" id="profile-name" class="form-control">
+          </div>
+          <div class="mb-3">
+            <label class="form-label fw-semibold small">Bio</label>
+            <textarea id="profile-bio" class="form-control" rows="3" placeholder="Tell students a bit about yourself..."></textarea>
+          </div>
+          <div class="row g-3">
+            <div class="col-6">
+              <label class="form-label fw-semibold small">University</label>
+              <input type="text" id="profile-university" class="form-control">
+            </div>
+            <div class="col-6">
+              <label class="form-label fw-semibold small">Year of study</label>
+              <select id="profile-year" class="form-select">
+                <option value="1">Year 1</option>
+                <option value="2">Year 2</option>
+                <option value="3">Year 3</option>
+                <option value="4">Year 4</option>
+                <option value="5">Year 5</option>
+                <option value="6">Year 6</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Tutor fields -->
+          <div id="tutor-fields" style="display:none">
+            <hr>
+            <h6 class="fw-bold mb-3">Tutor Settings</h6>
+            <div class="mb-3">
+              <label class="form-label fw-semibold small">Subjects I can teach</label>
+              <input type="text" id="profile-subjects" class="form-control" placeholder="CS301, MATH201, PHY101 (comma-separated)">
+            </div>
+            <div class="mb-3">
+              <label class="form-label fw-semibold small">Hourly rate (USD)</label>
+              <input type="number" id="profile-rate" class="form-control" min="0" step="0.50" value="0">
+            </div>
+          </div>
+
+          <div id="profile-message" class="alert d-none small mt-3"></div>
+          <button type="submit" class="btn btn-primary">Save Profile</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Availability (tutor only) -->
+    <div class="card border-0 shadow-sm" id="availability-card" style="display:none">
+      <div class="card-body">
+        <h6 class="fw-bold mb-2">Weekly Availability</h6>
+        <p class="text-muted small mb-3">Set the time slots when students can book you.</p>
+
+        <div id="slots-container"></div>
+
+        <div class="d-flex gap-2 mt-3">
+          <button class="btn btn-outline-secondary btn-sm" id="add-slot-btn">+ Add Time Slot</button>
+          <button class="btn btn-primary btn-sm" id="save-availability-btn">Save Availability</button>
+        </div>
+        <div id="avail-message" class="alert d-none small mt-3"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/profile.js"></script>
+</body>
+</html>
