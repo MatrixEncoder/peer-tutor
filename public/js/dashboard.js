@@ -128,6 +128,12 @@ function renderSessions() {
           <div class="small">${currentView === "student" ? "with " : "Student: "}${peerName}</div>
           <div class="text-muted" style="font-size:0.75rem;">${formatDate(s.scheduled_date)} at ${s.scheduled_time} &middot; ${s.duration_minutes} min</div>
           ${s.notes ? `<div class="text-muted" style="font-size:0.75rem;">${s.notes}</div>` : ""}
+          ${currentView === "tutor" && s.review ? `
+            <div class="mt-1 p-2 bg-white rounded" style="font-size:0.75rem;">
+              <span class="text-warning fw-bold">${"\u2605".repeat(s.review.rating)}${"\u2606".repeat(5 - s.review.rating)}</span>
+              ${s.review.comment ? `<span class="text-muted ms-1">${s.review.comment}</span>` : ""}
+            </div>
+          ` : ""}
         </div>
         <div class="d-flex align-items-center gap-2">
           ${statusBadge(s.status)}
