@@ -44,15 +44,15 @@ After seeding, these accounts are ready to use:
 
 | Email | Password | Role |
 |-------|----------|------|
-| alex@university.edu | password123 | BOTH |
-| sarah@university.edu | password123 | TUTOR |
-| mike@university.edu | password123 | TUTOR |
-| emma@university.edu | password123 | TUTOR |
-| james@university.edu | password123 | TUTOR |
-| lisa@university.edu | password123 | STUDENT |
-| david@university.edu | password123 | STUDENT |
+| julian@university.edu | password123 | BOTH |
+| mateo@university.edu | password123 | TUTOR |
+| anya@university.edu | password123 | TUTOR |
+| leo@university.edu | password123 | TUTOR |
+| rina@university.edu | password123 | BOTH |
+| priya@university.edu | password123 | STUDENT |
+| noah@university.edu | password123 | STUDENT |
 
-**Recommended:** Log in as `alex@university.edu` — this account has role `BOTH` so you can test the student dashboard (book sessions, leave reviews) and the tutor dashboard (accept/decline requests, view feedback) by switching between Student View and Tutor View.
+**Recommended:** Log in as `julian@university.edu` — this account has role `BOTH` so you can test the student dashboard (book sessions, leave reviews) and the tutor dashboard (accept/decline requests, view feedback) by switching between Student View and Tutor View.
 
 ## Demo Search Codes
 
@@ -60,10 +60,10 @@ Seeded tutors use the unit codes from the research proposal. Try these in the ho
 
 | Unit Code | Tutors |
 |-----------|--------|
-| HI6050 | James Wilson, Sofia Rodriguez, Liam Thompson |
-| ICT201 | Alex Chen, Maya Patel, Liam Thompson |
-| NET102 | Alex Chen, Maya Patel |
-| ITECH3041 | Alex Chen |
+| HI6050 | Anya Petrov, Leo Takahashi, Rina Sharma |
+| ICT201 | Julian Vance, Mateo Silva, Rina Sharma |
+| NET102 | Julian Vance, Mateo Silva |
+| ITECH3041 | Julian Vance |
 
 ## Project Structure
 

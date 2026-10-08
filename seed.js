@@ -3,11 +3,11 @@ const bcrypt = require("bcryptjs");
 const { getDb, initDatabase, dbRun, dbExec, dbGet, dbAll, saveDb } = require("./database");
 
 const MOCK_USERS = [
-  { name: "Alex Chen", email: "alex@university.edu", university: "Holmes Institute", department: "Information Technology", yearOfStudy: 4, bio: "4th year IT student. Love databases and competitive programming.", role: "BOTH", subjects: "ICT201 - Database Systems,NET102 - Network Fundamentals,ITECH3041 - Information Technology Project", hourlyRate: 25 },
-  { name: "Maya Patel", email: "maya@university.edu", university: "Holmes Institute", department: "Information Technology", yearOfStudy: 3, bio: "IT enthusiast. I break down complex concepts into simple steps.", role: "TUTOR", subjects: "NET102 - Network Fundamentals,ICT201 - Database Systems", hourlyRate: 20 },
-  { name: "James Wilson", email: "james@university.edu", university: "Holmes Institute", department: "Business", yearOfStudy: 5, bio: "Postgrad business student. Tutoring core units since 2022.", role: "TUTOR", subjects: "HI6050 - Strategic Management", hourlyRate: 30 },
-  { name: "Sofia Rodriguez", email: "sofia@university.edu", university: "Holmes Institute", department: "Business", yearOfStudy: 3, bio: "Business major. Here to help you survive strategy and management units!", role: "TUTOR", subjects: "HI6050 - Strategic Management", hourlyRate: 22 },
-  { name: "Liam Thompson", email: "liam@university.edu", university: "Holmes Institute", department: "Information Technology", yearOfStudy: 2, bio: "Second-year IT student. I enjoy making abstract concepts relatable.", role: "BOTH", subjects: "ICT201 - Database Systems,HI6050 - Strategic Management", hourlyRate: 18 },
+  { name: "Julian Vance", email: "julian@university.edu", university: "Holmes Institute", department: "Information Technology", yearOfStudy: 4, bio: "4th year IT student. Love databases and competitive programming.", role: "BOTH", subjects: "ICT201 - Database Systems,NET102 - Network Fundamentals,ITECH3041 - Information Technology Project", hourlyRate: 25 },
+  { name: "Mateo Silva", email: "mateo@university.edu", university: "Holmes Institute", department: "Information Technology", yearOfStudy: 3, bio: "IT enthusiast. I break down complex concepts into simple steps.", role: "TUTOR", subjects: "NET102 - Network Fundamentals,ICT201 - Database Systems", hourlyRate: 20 },
+  { name: "Anya Petrov", email: "anya@university.edu", university: "Holmes Institute", department: "Business", yearOfStudy: 5, bio: "Postgrad business student. Tutoring core units since 2022.", role: "TUTOR", subjects: "HI6050 - Strategic Management", hourlyRate: 30 },
+  { name: "Leo Takahashi", email: "leo@university.edu", university: "Holmes Institute", department: "Business", yearOfStudy: 3, bio: "Business major. Here to help you survive strategy and management units!", role: "TUTOR", subjects: "HI6050 - Strategic Management", hourlyRate: 22 },
+  { name: "Rina Sharma", email: "rina@university.edu", university: "Holmes Institute", department: "Information Technology", yearOfStudy: 2, bio: "Second-year IT student. I enjoy making abstract concepts relatable.", role: "BOTH", subjects: "ICT201 - Database Systems,HI6050 - Strategic Management", hourlyRate: 18 },
   { name: "Priya Sharma", email: "priya@university.edu", university: "Holmes Institute", department: "Business", yearOfStudy: 1, bio: null, role: "STUDENT", subjects: "", hourlyRate: 0 },
   { name: "Noah Davis", email: "noah@university.edu", university: "Holmes Institute", department: "Information Technology", yearOfStudy: 2, bio: null, role: "STUDENT", subjects: "", hourlyRate: 0 },
 ];
@@ -78,7 +78,7 @@ async function main() {
 
   console.log(`Seeded ${MOCK_USERS.length} users`);
   console.log("All passwords: password123");
-  console.log("Try: alex@university.edu / password123");
+  console.log("Try: julian@university.edu / password123");
 }
 
 main().catch(console.error);
