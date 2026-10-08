@@ -1,4 +1,4 @@
-/* Peer Tutor - Custom Styles (complements Bootstrap) */
+/* Study-Sphere - Custom Styles (complements Bootstrap) */
 
 :root {
   --brand: #4f46e5;
@@ -7,19 +7,6 @@
 
 body {
   font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-}
-
-.navbar-brand-icon {
-  width: 36px;
-  height: 36px;
-  background: var(--brand);
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  font-weight: 700;
-  font-size: 14px;
 }
 
 .hero-section {

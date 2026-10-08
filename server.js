@@ -14,7 +14,7 @@ app.use(express.urlencoded({ extended: true }));
 // Session middleware (in-memory store for prototype)
 app.use(
   session({
-    secret: process.env.SESSION_SECRET || "peer-tutor-secret-key",
+    secret: process.env.SESSION_SECRET || "study-sphere-secret-key",
     resave: false,
     saveUninitialized: false,
     cookie: {

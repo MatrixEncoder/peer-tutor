@@ -3,7 +3,7 @@ const path = require("path");
 const fs = require("fs");
 
 const DATA_DIR = path.join(__dirname, "data");
-const DB_PATH = path.join(DATA_DIR, "peer-tutor.db");
+const DB_PATH = path.join(DATA_DIR, "study-sphere.db");
 
 let db = null;
 

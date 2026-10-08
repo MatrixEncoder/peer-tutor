@@ -1,4 +1,4 @@
-# Peer Tutoring Coordination Platform
+# Study-Sphere — Peer Tutoring Coordination Platform
 
 A web-based prototype for university students to discover, schedule, and review peer tutors. Built as a capstone project following the research paper: *Web-Based Peer Tutoring Coordination Platform for University Students*.
 
@@ -99,7 +99,7 @@ Peer-Tutor/
 │       ├── dashboard.js   # Session management + reviews
 │       └── profile.js     # Profile + availability editing
 └── data/
-    └── peer-tutor.db      # SQLite database (auto-created, gitignored)
+    └── study-sphere.db    # SQLite database (auto-created, gitignored)
 ```
 
 ## API Endpoints
@@ -141,6 +141,6 @@ Peer-Tutor/
 
 ## Notes
 
-- The database file (`data/peer-tutor.db`) is auto-created on first run and gitignored
+- The database file (`data/study-sphere.db`) is auto-created on first run and gitignored
 - Run `npm run seed` to reset the database with fresh test data
 - The app runs on port 3000 by default (configurable in `.env`)

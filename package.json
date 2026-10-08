@@ -1,5 +1,5 @@
 {
-  "name": "peer-tutor",
+  "name": "study-sphere",
   "version": "1.0.0",
   "description": "Web-Based Peer Tutoring Coordination Platform for University Students",
   "main": "server.js",
