@@ -52,7 +52,7 @@ app.get("/profile", (req, res) => res.sendFile(path.join(__dirname, "public", "p
 // Start server after database is ready
 initDatabase().then(() => {
   app.listen(PORT, () => {
-    console.log(`Peer Tutor server running at http://localhost:${PORT}`);
+    console.log(`Study-Sphere server running at http://localhost:${PORT}`);
   });
 }).catch((err) => {
   console.error("Failed to initialise database:", err);

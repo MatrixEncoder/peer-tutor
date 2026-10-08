@@ -68,10 +68,6 @@ async function loadTutorProfile() {
         <p class="text-muted mb-1">${tutor.user.university} &middot; Year ${tutor.user.yearOfStudy} &middot; ${tutor.user.department}</p>
         <div>${starRatingHTML(tutor.avgRating)} <small class="text-muted">${tutor.avgRating > 0 ? tutor.avgRating.toFixed(1) : "No reviews"}${tutor.totalReviews > 0 ? ` &middot; ${tutor.totalReviews} reviews` : ""}</small></div>
       </div>
-      <div class="text-end flex-shrink-0">
-        <div class="fw-bold" style="font-size:1.5rem;">$${tutor.hourlyRate}</div>
-        <small class="text-muted">per hour</small>
-      </div>
     </div>
 
     <div class="row g-4">
@@ -139,10 +135,6 @@ async function loadTutorProfile() {
                 <label class="form-label fw-semibold small">Notes (optional)</label>
                 <textarea id="book-notes" class="form-control form-control-sm" rows="2" placeholder="Topics you want to cover..."></textarea>
               </div>
-              <div class="bg-light rounded p-2 mb-3 d-flex justify-content-between">
-                <span class="text-muted small">Estimated cost</span>
-                <span class="fw-bold small" id="book-cost">$${((tutor.hourlyRate * 60) / 60).toFixed(2)}</span>
-              </div>
               <div id="booking-error" class="alert alert-danger d-none small py-2"></div>
               <div id="booking-success" class="alert alert-success d-none small py-2"></div>
               <button type="submit" id="book-btn" class="btn btn-primary w-100">Request Session</button>
@@ -152,13 +144,6 @@ async function loadTutorProfile() {
       </div>
     </div>
   `;
-
-  // Update cost estimate on duration change
-  document.getElementById("book-duration").addEventListener("change", (e) => {
-    const hours = parseInt(e.target.value) / 60;
-    const cost = (tutor.hourlyRate * hours).toFixed(2);
-    document.getElementById("book-cost").textContent = `$${cost}`;
-  });
 
   // Handle booking
   document.getElementById("booking-form").addEventListener("submit", async (e) => {

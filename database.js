@@ -58,7 +58,6 @@ async function initDatabase() {
     CREATE TABLE IF NOT EXISTS tutor_profiles (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       user_id INTEGER UNIQUE NOT NULL,
-      hourly_rate REAL DEFAULT 0,
       avg_rating REAL DEFAULT 0,
       total_reviews INTEGER DEFAULT 0,
       is_verified INTEGER DEFAULT 0,
@@ -90,7 +89,6 @@ async function initDatabase() {
       scheduled_time TEXT NOT NULL,
       duration_minutes INTEGER DEFAULT 60,
       status TEXT NOT NULL DEFAULT 'PENDING',
-      total_cost REAL DEFAULT 0,
       notes TEXT,
       cancel_reason TEXT,
       created_at DATETIME DEFAULT CURRENT_TIMESTAMP,

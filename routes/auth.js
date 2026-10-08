@@ -26,7 +26,7 @@ router.post("/register", async (req, res) => {
     );
 
     if (role === "TUTOR" || role === "BOTH") {
-      dbRun("INSERT INTO tutor_profiles (user_id, subjects, hourly_rate) VALUES (?, '', 0)", [result.lastInsertRowid]);
+      dbRun("INSERT INTO tutor_profiles (user_id, subjects) VALUES (?, '')", [result.lastInsertRowid]);
     }
 
     return res.status(201).json({ message: "Account created successfully" });
@@ -101,7 +101,7 @@ router.get("/profile", async (req, res) => {
     ...user,
     yearOfStudy: user.year_of_study,
     tutorProfile: tutorProfile
-      ? { ...tutorProfile, hourlyRate: tutorProfile.hourly_rate, avgRating: tutorProfile.avg_rating, totalReviews: tutorProfile.total_reviews, isVerified: !!tutorProfile.is_verified, availability }
+      ? { ...tutorProfile, avgRating: tutorProfile.avg_rating, totalReviews: tutorProfile.total_reviews, isVerified: !!tutorProfile.is_verified, availability }
       : null,
   });
 });
@@ -111,7 +111,7 @@ router.put("/profile", async (req, res) => {
   if (!req.session || !req.session.userId) return res.status(401).json({ error: "Not logged in" });
   await getDb();
 
-  const { name, bio, university, department, yearOfStudy, hourlyRate, subjects } = req.body;
+  const { name, bio, university, department, yearOfStudy, subjects } = req.body;
 
   try {
     const fields = [];
@@ -135,14 +135,13 @@ router.put("/profile", async (req, res) => {
       if (existing) {
         const tpFields = [];
         const tpParams = [];
-        if (hourlyRate !== undefined) { tpFields.push("hourly_rate = ?"); tpParams.push(hourlyRate); }
         if (subjects !== undefined) { tpFields.push("subjects = ?"); tpParams.push(subjects); }
         if (tpFields.length > 0) {
           tpParams.push(req.session.userId);
           dbExec(`UPDATE tutor_profiles SET ${tpFields.join(", ")} WHERE user_id = ?`, tpParams);
         }
       } else {
-        dbRun("INSERT INTO tutor_profiles (user_id, subjects, hourly_rate) VALUES (?, ?, ?)", [req.session.userId, subjects || "", hourlyRate || 0]);
+        dbRun("INSERT INTO tutor_profiles (user_id, subjects) VALUES (?, ?)", [req.session.userId, subjects || ""]);
       }
     }
 

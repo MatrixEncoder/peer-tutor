@@ -48,9 +48,6 @@ function renderTutors() {
                 <h6 class="fw-bold mb-0">${t.user.name}</h6>
                 <small class="text-muted">${t.user.university} &middot; ${t.user.department}</small>
               </div>
-              <div class="text-end">
-                <div class="fw-bold">$${t.hourlyRate}<small class="text-muted fw-normal">/hr</small></div>
-              </div>
             </div>
             <div class="mb-2">${starRatingHTML(t.avgRating)} <small class="text-muted">${t.avgRating > 0 ? t.avgRating.toFixed(1) : "No reviews"}${t.totalReviews > 0 ? ` (${t.totalReviews})` : ""}</small></div>
             ${t.user.bio ? `<p class="text-muted small mb-2" style="display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">${t.user.bio}</p>` : ""}

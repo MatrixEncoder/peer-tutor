@@ -9,7 +9,7 @@ router.get("/tutors", async (req, res) => {
     const { subject, department, minRating } = req.query;
 
     let query = `
-      SELECT tp.id, tp.hourly_rate AS hourlyRate, tp.avg_rating AS avgRating,
+      SELECT tp.id, tp.avg_rating AS avgRating,
              tp.total_reviews AS totalReviews, tp.is_verified AS isVerified,
              tp.subjects, tp.bio AS profileBio,
              u.id AS userId, u.name, u.email, u.university, u.department, u.year_of_study, u.bio
@@ -39,7 +39,6 @@ router.get("/tutors", async (req, res) => {
 
     const result = tutors.map((t) => ({
       id: t.id,
-      hourlyRate: t.hourlyRate,
       avgRating: t.avgRating,
       totalReviews: t.totalReviews,
       isVerified: !!t.isVerified,
@@ -60,7 +59,7 @@ router.get("/tutors/:id", async (req, res) => {
   try {
     await getDb();
     const tutor = dbGet(`
-      SELECT tp.id, tp.hourly_rate AS hourlyRate, tp.avg_rating AS avgRating,
+      SELECT tp.id, tp.avg_rating AS avgRating,
              tp.total_reviews AS totalReviews, tp.is_verified AS isVerified,
              tp.subjects, tp.bio AS profileBio,
              u.id AS userId, u.name, u.email, u.university, u.department, u.year_of_study, u.bio
@@ -80,7 +79,6 @@ router.get("/tutors/:id", async (req, res) => {
 
     return res.json({
       id: tutor.id,
-      hourlyRate: tutor.hourlyRate,
       avgRating: tutor.avgRating,
       totalReviews: tutor.totalReviews,
       isVerified: !!tutor.isVerified,

@@ -3,13 +3,13 @@ const bcrypt = require("bcryptjs");
 const { getDb, initDatabase, dbRun, dbExec, dbGet, dbAll, saveDb } = require("./database");
 
 const MOCK_USERS = [
-  { name: "Julian Vance", email: "julian@university.edu", university: "Holmes Institute", department: "Information Technology", yearOfStudy: 4, bio: "4th year IT student. Love databases and competitive programming.", role: "BOTH", subjects: "ICT201 - Database Systems,NET102 - Network Fundamentals,ITECH3041 - Information Technology Project", hourlyRate: 25 },
-  { name: "Mateo Silva", email: "mateo@university.edu", university: "Holmes Institute", department: "Information Technology", yearOfStudy: 3, bio: "IT enthusiast. I break down complex concepts into simple steps.", role: "TUTOR", subjects: "NET102 - Network Fundamentals,ICT201 - Database Systems", hourlyRate: 20 },
-  { name: "Anya Petrov", email: "anya@university.edu", university: "Holmes Institute", department: "Business", yearOfStudy: 5, bio: "Postgrad business student. Tutoring core units since 2022.", role: "TUTOR", subjects: "HI6050 - Strategic Management", hourlyRate: 30 },
-  { name: "Leo Takahashi", email: "leo@university.edu", university: "Holmes Institute", department: "Business", yearOfStudy: 3, bio: "Business major. Here to help you survive strategy and management units!", role: "TUTOR", subjects: "HI6050 - Strategic Management", hourlyRate: 22 },
-  { name: "Rina Sharma", email: "rina@university.edu", university: "Holmes Institute", department: "Information Technology", yearOfStudy: 2, bio: "Second-year IT student. I enjoy making abstract concepts relatable.", role: "BOTH", subjects: "ICT201 - Database Systems,HI6050 - Strategic Management", hourlyRate: 18 },
-  { name: "Priya Sharma", email: "priya@university.edu", university: "Holmes Institute", department: "Business", yearOfStudy: 1, bio: null, role: "STUDENT", subjects: "", hourlyRate: 0 },
-  { name: "Noah Davis", email: "noah@university.edu", university: "Holmes Institute", department: "Information Technology", yearOfStudy: 2, bio: null, role: "STUDENT", subjects: "", hourlyRate: 0 },
+  { name: "Julian Vance", email: "julian@university.edu", university: "Holmes Institute", department: "Information Technology", yearOfStudy: 4, bio: "4th year IT student. Love databases and competitive programming.", role: "BOTH", subjects: "ICT201 - Database Systems,NET102 - Network Fundamentals,ITECH3041 - Information Technology Project" },
+  { name: "Mateo Silva", email: "mateo@university.edu", university: "Holmes Institute", department: "Information Technology", yearOfStudy: 3, bio: "IT enthusiast. I break down complex concepts into simple steps.", role: "TUTOR", subjects: "NET102 - Network Fundamentals,ICT201 - Database Systems" },
+  { name: "Anya Petrov", email: "anya@university.edu", university: "Holmes Institute", department: "Business", yearOfStudy: 5, bio: "Postgrad business student. Tutoring core units since 2022.", role: "TUTOR", subjects: "HI6050 - Strategic Management" },
+  { name: "Leo Takahashi", email: "leo@university.edu", university: "Holmes Institute", department: "Business", yearOfStudy: 3, bio: "Business major. Here to help you survive strategy and management units!", role: "TUTOR", subjects: "HI6050 - Strategic Management" },
+  { name: "Rina Sharma", email: "rina@university.edu", university: "Holmes Institute", department: "Information Technology", yearOfStudy: 2, bio: "Second-year IT student. I enjoy making abstract concepts relatable.", role: "BOTH", subjects: "ICT201 - Database Systems,HI6050 - Strategic Management" },
+  { name: "Priya Sharma", email: "priya@university.edu", university: "Holmes Institute", department: "Business", yearOfStudy: 1, bio: null, role: "STUDENT", subjects: "" },
+  { name: "Noah Davis", email: "noah@university.edu", university: "Holmes Institute", department: "Information Technology", yearOfStudy: 2, bio: null, role: "STUDENT", subjects: "" },
 ];
 
 async function main() {
@@ -38,10 +38,10 @@ async function main() {
 
     if (u.role === "TUTOR" || u.role === "BOTH") {
       const tpResult = dbRun(
-        "INSERT INTO tutor_profiles (user_id, subjects, hourly_rate, is_verified) VALUES (?, ?, ?, 1)",
-        [userId, u.subjects, u.hourlyRate]
+        "INSERT INTO tutor_profiles (user_id, subjects, is_verified) VALUES (?, ?, 1)",
+        [userId, u.subjects]
       );
-      tutorProfileIds.push({ userId, profileId: tpResult.lastInsertRowid, hourlyRate: u.hourlyRate, subjects: u.subjects });
+      tutorProfileIds.push({ userId, profileId: tpResult.lastInsertRowid, subjects: u.subjects });
 
       // Add availability
       [1, 3, 5].forEach((day) => {
@@ -64,9 +64,9 @@ async function main() {
     const rating = Math.floor(Math.random() * 2) + 4; // 4 or 5
 
     const sessResult = dbRun(
-      "INSERT INTO sessions (student_id, tutor_id, tutor_profile_id, subject, scheduled_date, scheduled_time, duration_minutes, status, total_cost) VALUES (?, ?, ?, ?, ?, ?, ?, 'COMPLETED', ?)",
-      [studentId, tp.userId, tp.profileId, tp.subjects.split(",")[0], "2025-08-01", "10:00", 60, tp.hourlyRate]
-    );
+        "INSERT INTO sessions (student_id, tutor_id, tutor_profile_id, subject, scheduled_date, scheduled_time, duration_minutes, status) VALUES (?, ?, ?, ?, ?, ?, ?, 'COMPLETED')",
+        [studentId, tp.userId, tp.profileId, tp.subjects.split(",")[0], "2025-08-01", "10:00", 60]
+      );
 
     dbRun(
       "INSERT INTO reviews (session_id, reviewer_id, tutor_profile_id, rating, comment) VALUES (?, ?, ?, ?, ?)",

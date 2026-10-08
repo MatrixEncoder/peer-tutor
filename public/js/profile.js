@@ -27,7 +27,6 @@ async function initProfile() {
     document.getElementById("availability-card").style.display = "block";
     if (profileData.tutorProfile) {
       document.getElementById("profile-subjects").value = profileData.tutorProfile.subjects || "";
-      document.getElementById("profile-rate").value = profileData.tutorProfile.hourlyRate || 0;
       slots = profileData.tutorProfile.availability || [];
     }
     renderSlots();
@@ -82,7 +81,6 @@ document.getElementById("profile-form").addEventListener("submit", async (e) => 
 
   if (profileData.role === "TUTOR" || profileData.role === "BOTH") {
     body.subjects = document.getElementById("profile-subjects").value;
-    body.hourlyRate = parseFloat(document.getElementById("profile-rate").value) || 0;
   }
 
   const res = await fetch("/api/profile", {

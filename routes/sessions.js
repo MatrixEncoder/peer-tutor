@@ -26,10 +26,9 @@ router.post("/sessions", requireAuth, async (req, res) => {
     );
     if (conflict) return res.status(409).json({ error: "That time slot is already booked." });
 
-    const totalCost = tutorProfile.hourly_rate * (duration / 60);
     const result = dbRun(
-      "INSERT INTO sessions (student_id, tutor_id, tutor_profile_id, subject, scheduled_date, scheduled_time, duration_minutes, status, total_cost, notes) VALUES (?, ?, ?, ?, ?, ?, ?, 'PENDING', ?, ?)",
-      [userId, tutorProfile.user_id, tutorProfileId, subject, scheduledDate, scheduledTime, duration, totalCost, notes || null]
+      "INSERT INTO sessions (student_id, tutor_id, tutor_profile_id, subject, scheduled_date, scheduled_time, duration_minutes, status, notes) VALUES (?, ?, ?, ?, ?, ?, ?, 'PENDING', ?)",
+      [userId, tutorProfile.user_id, tutorProfileId, subject, scheduledDate, scheduledTime, duration, notes || null]
     );
 
     return res.status(201).json({ id: result.lastInsertRowid, message: "Session booked" });
