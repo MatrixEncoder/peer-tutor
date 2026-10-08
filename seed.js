@@ -3,13 +3,13 @@ const bcrypt = require("bcryptjs");
 const { getDb, initDatabase, dbRun, dbExec, dbGet, dbAll, saveDb } = require("./database");
 
 const MOCK_USERS = [
-  { name: "Alex Chen", email: "alex@university.edu", university: "University of Toronto", department: "Computer Science", yearOfStudy: 4, bio: "4th year CS student. Love algorithms and competitive programming.", role: "BOTH", subjects: "CS101 - Intro to Programming,CS201 - Data Structures,CS301 - Algorithms", hourlyRate: 25 },
-  { name: "Maya Patel", email: "maya@university.edu", university: "University of Toronto", department: "Mathematics", yearOfStudy: 3, bio: "Math enthusiast. I break down complex concepts into simple steps.", role: "TUTOR", subjects: "MATH101 - Calculus I,MATH201 - Linear Algebra,MATH301 - Discrete Mathematics", hourlyRate: 20 },
-  { name: "James Wilson", email: "james@university.edu", university: "University of Toronto", department: "Physics", yearOfStudy: 5, bio: "PhD student in Physics. Tutoring undergrad physics since 2022.", role: "TUTOR", subjects: "PHY101 - Physics I,MATH101 - Calculus I", hourlyRate: 30 },
-  { name: "Sofia Rodriguez", email: "sofia@university.edu", university: "University of Toronto", department: "Chemistry", yearOfStudy: 3, bio: "Chem nerd. Here to help you survive organic chemistry!", role: "TUTOR", subjects: "CHEM101 - General Chemistry", hourlyRate: 22 },
-  { name: "Liam Thompson", email: "liam@university.edu", university: "University of Toronto", department: "Economics", yearOfStudy: 2, bio: "Second-year econ student. I enjoy making abstract concepts relatable.", role: "BOTH", subjects: "ECON201 - Microeconomics,MATH101 - Calculus I", hourlyRate: 18 },
-  { name: "Priya Sharma", email: "priya@university.edu", university: "University of Toronto", department: "Computer Science", yearOfStudy: 1, bio: null, role: "STUDENT", subjects: "", hourlyRate: 0 },
-  { name: "Noah Davis", email: "noah@university.edu", university: "University of Toronto", department: "Mathematics", yearOfStudy: 2, bio: null, role: "STUDENT", subjects: "", hourlyRate: 0 },
+  { name: "Alex Chen", email: "alex@university.edu", university: "Holmes Institute", department: "Information Technology", yearOfStudy: 4, bio: "4th year IT student. Love databases and competitive programming.", role: "BOTH", subjects: "ICT201 - Database Systems,NET102 - Network Fundamentals,ITECH3041 - Information Technology Project", hourlyRate: 25 },
+  { name: "Maya Patel", email: "maya@university.edu", university: "Holmes Institute", department: "Information Technology", yearOfStudy: 3, bio: "IT enthusiast. I break down complex concepts into simple steps.", role: "TUTOR", subjects: "NET102 - Network Fundamentals,ICT201 - Database Systems", hourlyRate: 20 },
+  { name: "James Wilson", email: "james@university.edu", university: "Holmes Institute", department: "Business", yearOfStudy: 5, bio: "Postgrad business student. Tutoring core units since 2022.", role: "TUTOR", subjects: "HI6050 - Strategic Management", hourlyRate: 30 },
+  { name: "Sofia Rodriguez", email: "sofia@university.edu", university: "Holmes Institute", department: "Business", yearOfStudy: 3, bio: "Business major. Here to help you survive strategy and management units!", role: "TUTOR", subjects: "HI6050 - Strategic Management", hourlyRate: 22 },
+  { name: "Liam Thompson", email: "liam@university.edu", university: "Holmes Institute", department: "Information Technology", yearOfStudy: 2, bio: "Second-year IT student. I enjoy making abstract concepts relatable.", role: "BOTH", subjects: "ICT201 - Database Systems,HI6050 - Strategic Management", hourlyRate: 18 },
+  { name: "Priya Sharma", email: "priya@university.edu", university: "Holmes Institute", department: "Business", yearOfStudy: 1, bio: null, role: "STUDENT", subjects: "", hourlyRate: 0 },
+  { name: "Noah Davis", email: "noah@university.edu", university: "Holmes Institute", department: "Information Technology", yearOfStudy: 2, bio: null, role: "STUDENT", subjects: "", hourlyRate: 0 },
 ];
 
 async function main() {

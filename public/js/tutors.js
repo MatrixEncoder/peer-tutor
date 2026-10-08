@@ -121,5 +121,10 @@ document.querySelectorAll(".rating-btn").forEach((btn) => {
   });
 });
 
-// Load tutors on page load
+// Load tutors on page load (supports ?subject= from homepage search)
+const urlParams = new URLSearchParams(window.location.search);
+if (urlParams.get("subject")) {
+  currentSubject = urlParams.get("subject");
+  document.getElementById("filter-subject").value = currentSubject;
+}
 fetchTutors();

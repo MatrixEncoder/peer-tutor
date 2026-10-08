@@ -54,6 +54,17 @@ After seeding, these accounts are ready to use:
 
 **Recommended:** Log in as `alex@university.edu` — this account has role `BOTH` so you can test the student dashboard (book sessions, leave reviews) and the tutor dashboard (accept/decline requests, view feedback) by switching between Student View and Tutor View.
 
+## Demo Search Codes
+
+Seeded tutors use the unit codes from the research proposal. Try these in the homepage or tutor directory search box:
+
+| Unit Code | Tutors |
+|-----------|--------|
+| HI6050 | James Wilson, Sofia Rodriguez, Liam Thompson |
+| ICT201 | Alex Chen, Maya Patel, Liam Thompson |
+| NET102 | Alex Chen, Maya Patel |
+| ITECH3041 | Alex Chen |
+
 ## Project Structure
 
 ```
